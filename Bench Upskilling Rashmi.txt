@@ -1,0 +1,10 @@
+Bench Upskilling Rashmi
+
+Cake Study in Online Railway Reservation System successfully implemented 
+(Video Link - https://www.youtube.com/watch?v=0At4l_VlSuE&ab_channel=SaumyadipMukherjee )
+(Frontend Github Link -  https://github.com/makorsha69/RailwaySystemUI )
+(Backend Github Link - https://github.com/makorsha69/RailwaySystem.API )
+Completed CAF exam and all the mandatory courses including Agile (Coursera)
+Passed Azure Fundamental AZ900 Certification.
+
+

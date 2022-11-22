@@ -1,0 +1,9 @@
+Bench Assignment by Tejas
+
+Deployed the .NET WEBAPI Backend - (https://railwaysystembackend.azurewebsites.net) ,  
+
+SQL Database - (railwaysystemdbserver.database.windows.net) , 
+
+Angular UI/Frontend - (https://railwaysystemui.azurewebsites.net)
+
+To Azure using PaaS.
