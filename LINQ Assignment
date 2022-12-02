@@ -1,0 +1,148 @@
+Employee.cs
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace LINQAssignment
+{
+    class Employee
+    {
+        public int EmployeeID { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Title { get; set; }
+
+        public DateTime DOB { get; set; }
+
+        public DateTime DOJ { get; set; }
+
+        public string City { get; set; }
+    }
+}
+
+Program.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace LINQAssignment
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Employee> empList = new List<Employee>()
+            {
+                new Employee { EmployeeID = 1001, FirstName = "Malcolm", LastName = "Daruwalla", Title = "Manager", DOB = new DateTime(1984,11,16), DOJ = new DateTime(2011,06,08), City = "Mumbai" },
+                new Employee { EmployeeID = 1002, FirstName = "Asdin", LastName = "Dhalla", Title = "AsstManager", DOB = new DateTime(1984,08,20), DOJ = new DateTime(2012,08,20), City = "Mumbai" },
+                new Employee { EmployeeID = 1003, FirstName = "Madhavi", LastName = "Oza", Title = "Consultant", DOB = new DateTime(1987,11,14), DOJ = new DateTime(2015,04,12), City = "Pune" },
+                new Employee { EmployeeID = 1004, FirstName = "Saba", LastName = "Shaikh", Title = "SE       ", DOB = new DateTime(1990,06,03), DOJ = new DateTime(2016,02,02), City = "Pune" },
+                new Employee { EmployeeID = 1005, FirstName = "Nazia", LastName = "Shaikh", Title = "SE      ", DOB = new DateTime(1991,03,08), DOJ = new DateTime(2016,02,02), City = "Mumbai" },
+                new Employee { EmployeeID = 1006, FirstName = "Amit", LastName = "Pathak", Title = "Consultant", DOB = new DateTime(1989,11,07), DOJ = new DateTime(2014,08,08), City = "Chennai" },
+                new Employee { EmployeeID = 1007, FirstName = "Vijay", LastName = "Natrajan", Title = "Consultant", DOB = new DateTime(1989,12,02) , DOJ = new DateTime(2015,06,01) , City = "Mumbai" },
+                new Employee { EmployeeID = 1008, FirstName = "Rahul", LastName = "Dubey", Title = "Associate", DOB = new DateTime(1993,11,11) , DOJ = new DateTime(2014,11,06) , City = "Chennai" },
+                new Employee { EmployeeID = 1009, FirstName = "Suresh", LastName = "Mistry", Title = "Associate", DOB = new DateTime(1992,08,12) , DOJ = new DateTime(2014,12,03) , City = "Chennai" },
+                new Employee { EmployeeID = 1010, FirstName = "Sumit", LastName = "Shah", Title = "Manager", DOB = new DateTime(1991,04,12) , DOJ = new DateTime(2016,01,02) , City = "Pune" },
+            };
+            foreach (Employee emp in empList)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName,
+                       emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+
+            }
+            Console.WriteLine("\n 1. Details of all the employees\n");
+            IEnumerable<Employee> employee = from emp in empList
+                                             select emp;
+            foreach (var emp in employee)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName,
+                    emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+
+            }
+
+
+            Console.WriteLine("\n 2. Details of all the employees whose Location is not Mumbai\n");
+            IEnumerable<Employee> employee1 = from emp in empList
+                                              where emp.City != "Mumbai"
+                                             select emp ;
+            foreach (var emp in employee1)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName,
+                    emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+
+            }
+
+
+            Console.WriteLine("\n 3. Details of all the employees whose title is AsstManager\n");
+            IEnumerable<Employee> employee2 = from emp in empList where emp.Title == "AsstManager" select emp;
+            foreach (var emp in employee2)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName,emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+            }
+
+
+            Console.WriteLine("\n 4. Details of all the employees whose Last name starts with S\n");
+            IEnumerable<Employee> employee3 = from emp in empList
+                                              where emp.LastName.StartsWith('S')
+                                              select emp;
+            foreach (var emp in employee3)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName,
+                    emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+
+            }
+
+            Console.WriteLine("\n 5. Details of all the employees who have joined before 01/01/2015\n");
+            DateTime date = new DateTime(2015,01,01);
+            IEnumerable<Employee> employee4 = from emp in empList
+                                              where emp.DOJ < date
+                                              select emp;
+            foreach (var emp in employee4)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName,
+                    emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+
+            }
+
+
+            Console.WriteLine("\n 6. Details of all the employees whose Birth Date is after 01/01/1990\n");
+            DateTime date1 = new DateTime(1990, 01, 01);
+            IEnumerable<Employee> employee5 = from emp in empList
+                                              where emp.DOB > date1
+                                              select emp;
+            foreach (var emp in employee5)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName,
+                    emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+
+            }
+
+            Console.WriteLine("\n 7. Details of all the employees whose Designation is Consultant or Associater\n");
+            IEnumerable<Employee> employee6 = from emp in empList where emp.Title == "Consultant" || emp.Title == "Associate" select emp;
+            foreach (var emp in employee6)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}     \t{3} \t\t{4}\t{5}\t{6}", emp.EmployeeID, emp.FirstName, emp.LastName, emp.Title, emp.DOB.ToShortDateString(), emp.DOJ.ToShortDateString(), emp.City);
+            }
+
+            Console.WriteLine("\n 8. Display total number of employees\n");
+            IEnumerable<Employee> employee7 = from emp in empList  select emp;
+            var count = empList.Count();
+            Console.WriteLine("The total number of employees are :"+count);
+
+            var query13 = empList.GroupBy(i => new { i.City, i.Title }).Select(e => new {
+                disnt = e.Select(l => l.EmployeeID).Distinct().Count()
+            });
+            foreach (var i in query13)
+            {
+                Console.WriteLine(empList);
+                Console.WriteLine(i.disnt);
+            }
+
+        }
+    }
+}
